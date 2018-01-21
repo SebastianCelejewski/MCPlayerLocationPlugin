@@ -7,11 +7,12 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PlayerLocationPlugin extends JavaPlugin implements Listener {
-    
+
     @Override
     public void onEnable() {
         getLogger().info("PlayerLocationPlugin has been enabled.");
         getServer().getPluginManager().registerEvents(this, this);
+        getServer().getScheduler().runTaskTimerAsynchronously(this, new SavePlayersLocationTask(this), 20 * 5, 5 * 60);
     }
 
     @Override
